@@ -2,7 +2,7 @@ version: '3'
 
 services:
   webhook:
-    image: holmesocde/deploy-webhook:latest
+    image: holmescode/deploy-webhook:latest
     deploy:
       replicas: 1
       update_config:
