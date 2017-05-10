@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  web:
+    image: vipercloud/web:latest
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      labels:
+        - traefik.port=5000
+        - traefik.backend=vipercloud-web
+        - traefik.frontend.rule=Host:www.viper.cloud,viper.cloud
+        - traefik.backend.loadbalancer.sticky=true
+    networks:
+      - ingress 
+      - private
+
+  db:
+    image: mongo:3.5
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    networks:
+      - private
+
+networks:
+  private:
+    driver: overlay
+  ingress:
+    external:
+      name: core_ingress

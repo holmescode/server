@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  proxy:
+    image: traefik:1.2
+    command: --web --docker --docker.swarmmode --docker.watch --docker.domain=holmescode.com --logLevel=DEBUG
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      placement:
+        constraints:
+          - node.role == manager
+    networks:
+      - ingress
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8080:8080'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/server/core/traefik.toml:/traefik.toml
+      - /var/ssl:/var/ssl
+    labels:
+      - traefik.enable=false
+
+networks:
+  ingress:
+    driver: overlay

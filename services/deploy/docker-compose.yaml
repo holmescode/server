@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  webhook:
+    image: mattholmes/deploy:latest
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      labels:
+        - traefik.port=5000
+        - traefik.backend=holmescode-deploy
+        - traefik.frontend.rule=Host:www.holmescode.com,holmescode.com;Path:/deploy
+        - traefik.backend.loadbalancer.sticky=true
+    networks:
+      - ingress
+      - private
+  
+  queue:
+    image: rabbitmq:3.6-alpine
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    networks:
+      - private
+
+networks:
+  private:
+    driver: overlay
+  ingress:
+    external:
+      name: core_ingress

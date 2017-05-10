@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  web:
+    image: holmescode/web:latest
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      labels:
+        - traefik.port=5000
+        - traefik.backend=holmescode-web
+        - traefik.frontend.rule=Host:www.holmescode.com,holmescode.com
+        - traefik.backend.loadbalancer.sticky=true
+    networks:
+      - ingress
+      - private
+  
+networks:
+  private:
+    driver: overlay
+  ingress:
+    external:
+      name: core_ingress
