@@ -17,6 +17,7 @@ services:
         - traefik.port=5000
         - traefik.backend=holmescode-web
         - traefik.frontend.rule=Host:www.holmescode.com,holmescode.com
+        - traefik.frontend.priority=20
         - traefik.backend.loadbalancer.sticky=true
     networks:
       - ingress
