@@ -16,9 +16,8 @@ services:
       labels:
         - traefik.port=5000
         - traefik.backend=holmescode-deploy
-        - traefik.frontend.rule=Path:/deploy
+        - traefik.frontend.rule=Host:holmescode.com,www.holmescode.com;Path:/deploy
         - traefik.frontend.priority=100
-        - traefik.backend.loadbalancer.sticky=true
     networks:
       - ingress
       - private
