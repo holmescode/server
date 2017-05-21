@@ -30,7 +30,7 @@ services:
         parallelism: 1
         delay: 10s
       restart_policy:
-        conditions: on-failure
+        condition: on-failure
         delay: 5s
         max_attempts: 3
         window: 120s
