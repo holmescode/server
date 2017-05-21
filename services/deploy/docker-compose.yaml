@@ -27,7 +27,7 @@ services:
     deploy:
       replicas: 1
       update_config:
-        parallelism: !
+        parallelism: 1
         delay: 10s
       restart_policy:
         conditions: on-failure
@@ -35,7 +35,7 @@ services:
         max_attempts: 3
         window: 120s
     environment:
-      - "LISTENER_AMQP_URL=amqp://queue"
+      - LISTENER_AMQP_URL=amqp://queue
     networks:
       - private
   
