@@ -35,7 +35,7 @@ services:
         max_attempts: 3
         window: 120s
     environment:
-      - LISTENER_AMQP_URL=amqp://queue
+      - LISTENER_AMQPURL=amqp://queue
     networks:
       - private
   
