@@ -38,6 +38,8 @@ services:
         window: 120s
     environment:
       - LISTENER_AMQPURL=amqp://queue
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - private
   
