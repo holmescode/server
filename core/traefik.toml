@@ -14,3 +14,10 @@ email = "matt@holmescode.com"
 storageFile = "/etc/traefik/acme.json"
 onDemand = true
 onHostRule = true
+
+[[acme.domains]]
+  main = "holmescode.com"
+  sans = ["www.holmescode.com", "api.holmescode.com", "deploy.holmescode.com"]
+[[acme.domains]]
+  main = "viper.cloud"
+  sans = ["www.viper.cloud", "api.viper.cloud"]
