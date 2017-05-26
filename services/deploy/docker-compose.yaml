@@ -2,7 +2,7 @@ version: '3'
 
 services:
   webhook:
-    image: holmesocde/deploy-webhook:latest
+    image: holmescode/deploy-webhook:latest
     deploy:
       replicas: 1
       update_config:
@@ -16,11 +16,31 @@ services:
       labels:
         - traefik.port=5000
         - traefik.backend=holmescode-deploy
-        - traefik.frontend.rule=Path:/deploy
+        - traefik.frontend.rule=Host:www.holmescode.com,holmescode.com;PathPrefixStrip:/deploy
         - traefik.frontend.priority=100
-        - traefik.backend.loadbalancer.sticky=true
+    environment:
+      - AMQP_URL=amqp://queue
     networks:
       - ingress
+      - private
+
+  listener:
+    image: holmescode/deploy-listener:latest
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    environment:
+      - LISTENER_AMQPURL=amqp://queue
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
       - private
   
   queue:
