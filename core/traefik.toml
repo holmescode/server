@@ -14,6 +14,7 @@ email = "matt@holmescode.com"
 storageFile = "/etc/traefik/acme.json"
 onDemand = true
 onHostRule = true
+entryPoint = "https"
 
 [[acme.domains]]
   main = "holmescode.com"
