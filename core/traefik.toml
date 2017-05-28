@@ -8,9 +8,17 @@ defaultEntryPoints = ["http", "https"]
   [entryPoints.https]
   address = ":443"
     [entryPoints.https.tls]
-      [[entryPoints.https.tls.certificates]]
-      certFile = "/var/ssl/holmescode.com.crt"
-      keyFile = "/var/ssl/holmescode.com.key"
-      [[entryPoints.https.tls.certificates]]
-      certFile = "/var/ssl/viper.cloud.crt"
-      keyFile = "/var/ssl/viper.cloud.key"
+
+[acme]
+email = "matt@holmescode.com"
+storageFile = "/etc/traefik/acme.json"
+onDemand = true
+onHostRule = true
+entryPoint = "https"
+
+[[acme.domains]]
+  main = "holmescode.com"
+  sans = ["www.holmescode.com", "api.holmescode.com", "deploy.holmescode.com"]
+[[acme.domains]]
+  main = "viper.cloud"
+  sans = ["www.viper.cloud", "api.viper.cloud"]
