@@ -7,7 +7,7 @@ services:
       replicas: 1
       resources:
         limits:
-          cpus: 0.5
+          cpus: '0.5'
           memory: 200M
       update_config:
         parallelism: 1
@@ -34,7 +34,7 @@ services:
       replicas: 1
       resources:
         limits:
-          cpus: 0.5
+          cpus: '0.5'
           memory: 200M
       update_config:
         parallelism: 1
@@ -55,6 +55,10 @@ services:
     image: rabbitmq:3.6-alpine
     deploy:
       replicas: 1
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 500M
       update_config:
         parallelism: 1
         delay: 10s
