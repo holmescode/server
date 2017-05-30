@@ -22,6 +22,7 @@ services:
         - traefik.backend=vipercloud-web
         - traefik.frontend.rule=Host:www.viper.cloud,viper.cloud
         - traefik.backend.loadbalancer.sticky=true
+        - traefik.docker.network=core_ingress
     networks:
       - ingress 
       - private

@@ -22,6 +22,7 @@ services:
         - traefik.backend=holmescode-deploy
         - traefik.frontend.rule=Host:www.holmescode.com,holmescode.com;PathPrefixStrip:/deploy
         - traefik.frontend.priority=100
+        - traefik.docker.network=core_ingress
     environment:
       - AMQP_URL=amqp://queue
     networks:
