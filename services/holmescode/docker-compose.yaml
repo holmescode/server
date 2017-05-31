@@ -28,6 +28,32 @@ services:
       - ingress
       - private
 
+  api:
+    image: holmescode/api:latest
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 200M
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      labels:        
+        - traefik.port=5000
+        - traefik.backend=holmescode-api
+        - traefik.frontend.rule=Host:api.holmescode.com
+        - traefik.frontend.priority=20
+        - traefik.docker.network=core_ingress
+    networks:
+      - ingress
+      - private
+
   db:
     image: mongo:3.5
     deploy:
