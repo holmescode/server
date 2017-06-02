@@ -24,6 +24,8 @@ services:
         - traefik.frontend.priority=20
         - traefik.backend.loadbalancer.sticky=true
         - traefik.docker.network=core_ingress
+    environment:
+      - API_URL=https://api.holmescode.com
     networks:
       - ingress
       - private
@@ -48,8 +50,9 @@ services:
         - traefik.port=5000
         - traefik.backend=holmescode-api
         - traefik.frontend.rule=Host:api.holmescode.com
-        - traefik.frontend.priority=20
         - traefik.docker.network=core_ingress
+    environment:
+      - MONGO_URL=mongo://db
     networks:
       - ingress
       - private

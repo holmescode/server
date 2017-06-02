@@ -34,6 +34,32 @@ services:
     labels:
       - traefik.enable=false
 
+configuration:
+  image: consul:0.8.3
+  command: agent -server -bind 0.0.0.0 -bootstrap
+  deploy:
+    replicas: 1
+    resources:
+      limits:
+        cpus: '1.0'
+        memory: 500M
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+  networks:
+    - services
+  environment:
+    - 'CONSUL_LOCAL_CONFIG={\"skip_leave_on_interrupt\": true}'
+  volumnes:
+    - /var/db/configuration:/consul/data
+
 networks:
   ingress:
+    driver: overlay
+  services:
     driver: overlay
