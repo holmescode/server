@@ -36,7 +36,7 @@ services:
 
   configuration:
     image: consul:0.8.3
-    command: agent -server -bind 0.0.0.0 -bootstrap
+    command: agent -server -bind 0.0.0.0 -advertise 127.0.0.1 -bootstrap
     deploy:
       replicas: 1
       resources:
