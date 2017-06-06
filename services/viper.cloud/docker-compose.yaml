@@ -28,7 +28,7 @@ services:
       - private
 
   db:
-    image: mongo:3.5
+    image: mongo:3.4
     deploy:
       resources:
         limits:
