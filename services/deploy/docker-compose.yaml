@@ -20,8 +20,7 @@ services:
       labels:
         - traefik.port=5000
         - traefik.backend=holmescode-deploy
-        - traefik.frontend.rule=Host:www.holmescode.com,holmescode.com;PathPrefixStrip:/deploy
-        - traefik.frontend.priority=100
+        - traefik.frontend.rule=Host:deploy.holmescode.com
         - traefik.docker.network=core_ingress
     environment:
       - AMQP_URL=amqp://queue
@@ -29,28 +28,28 @@ services:
       - ingress
       - private
 
-  listener:
-    image: holmescode/deploy-listener:latest
-    deploy:
-      replicas: 1
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 200M
-      update_config:
-        parallelism: 1
-        delay: 10s
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-    environment:
-      - LISTENER_AMQPURL=amqp://queue
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - private
+  # listener:
+  #   image: holmescode/deploy-listener:latest
+  #   deploy:
+  #     replicas: 1
+  #     resources:
+  #       limits:
+  #         cpus: '0.5'
+  #         memory: 200M
+  #     update_config:
+  #       parallelism: 1
+  #       delay: 10s
+  #     restart_policy:
+  #       condition: on-failure
+  #       delay: 5s
+  #       max_attempts: 3
+  #       window: 120s
+  #   environment:
+  #     - LISTENER_AMQPURL=amqp://queue
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   networks:
+  #     - private
   
   queue:
     image: rabbitmq:3.6-alpine
