@@ -3,17 +3,15 @@ apiVersion: apps/v1
 metadata:
   name: ingress-controller
   namespace: core
-  labels:
-    app: ingress-lb
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: ingress-lb
+      k8s-app: ingress-lb
   template:
     metadata:
       labels:
-        app: ingress-lb
+        k8s-app: ingress-lb
     spec:
       serviceAccountName: ingress-controller
       terminationGracePeriodSeconds: 60
