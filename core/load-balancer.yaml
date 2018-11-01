@@ -1,5 +1,5 @@
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: ingress-controller
   namespace: core
@@ -9,12 +9,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      k8s-app: ingress-lb
+      app: ingress-lb
   template:
     metadata:
       labels:
-        k8s-app: ingress-lb
-        name: ingress-lb
+        app: ingress-lb
     spec:
       serviceAccountName: ingress-controller
       terminationGracePeriodSeconds: 60
