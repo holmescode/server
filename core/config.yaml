@@ -5,30 +5,30 @@ metadata:
   namespace: core
 data:
   traefik.toml: |
-  defaultEntryPoints = ["http", "https"]
-  [entryPoints]
-    [entryPoints.http]
-    address = ":80"
-      [entryPoints.http.redirect]
-      entryPoint = "https"
+    defaultEntryPoints = ["http", "https"]
+    [entryPoints]
+      [entryPoints.http]
+      address = ":80"
+        [entryPoints.http.redirect]
+        entryPoint = "https"
 
-    [entryPoints.https]
-    address = ":443"
-      [entryPoints.https.tls]
+      [entryPoints.https]
+      address = ":443"
+        [entryPoints.https.tls]
 
-  [kubernetes]
-    namespaces = ["core", "holmescode", "viper-cloud"]
+    [kubernetes]
+      namespaces = ["core", "holmescode", "viper-cloud"]
 
-  [acme]
-  email = "matt@holmescode.com"
-  storageFile = "/etc/traefik/acme.json"
-  onDemand = true
-  onHostRule = true
-  entryPoint = "https"
+    [acme]
+    email = "matt@holmescode.com"
+    storageFile = "/etc/traefik/acme.json"
+    onDemand = true
+    onHostRule = true
+    entryPoint = "https"
 
-  [[acme.domains]]
-    main = "beta.holmescode.com"
-    sans = ["kube.beta.holmescode.com", "api.beta.holmescode.com", "deploy.beta.holmescode.com"]
-  [[acme.domains]]
-    main = "beta.viper.cloud"
-    sans = ["www.beta.viper.cloud", "api.beta.viper.cloud"]
+    [[acme.domains]]
+      main = "beta.holmescode.com"
+      sans = ["kube.beta.holmescode.com", "api.beta.holmescode.com", "deploy.beta.holmescode.com"]
+    [[acme.domains]]
+      main = "beta.viper.cloud"
+      sans = ["www.beta.viper.cloud", "api.beta.viper.cloud"]
