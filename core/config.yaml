@@ -1,5 +1,5 @@
 kind: ConfigMap
-apiVersion: 1
+apiVersion: v1
 metadata:
   name: traefik-conf
   namespace: core
