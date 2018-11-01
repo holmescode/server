@@ -2,6 +2,7 @@ kind: ServiceAccount
 apiVersion: v1
 metadata:
   name: ingress-controller
+  namespace: core
 ---
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1beta1
