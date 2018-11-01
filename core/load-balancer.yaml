@@ -4,7 +4,7 @@ metadata:
   name: ingress-controller
   namespace: core
   labels:
-    k8s-app: ingress-lb
+    app: ingress-lb
 spec:
   replicas: 2
   selector:
