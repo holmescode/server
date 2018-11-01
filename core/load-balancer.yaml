@@ -61,4 +61,5 @@ spec:
         configMap:
           name: traefik-conf
       - name: certificates
-        hostPath: /etc/traefik
+        hostPath:
+          path: /etc/traefik
