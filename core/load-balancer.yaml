@@ -75,7 +75,7 @@ metadata:
   namespace: core
 spec:
   rules:
-  - host: admin.holmescode.com
+  - host: admin.beta.holmescode.com
     http:
       paths:
       - path: /
