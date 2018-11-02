@@ -6,6 +6,8 @@ metadata:
 data:
   traefik.toml: |
     defaultEntryPoints = ["http", "https"]
+    logLevel = "INFO"
+
     [entryPoints]
       [entryPoints.http]
       address = ":80"
