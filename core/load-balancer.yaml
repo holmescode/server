@@ -65,19 +65,4 @@ spec:
       port: 443
     - name: admin
       port: 8080
-  type: NodePort
----
-kind: Ingress
-apiVersion: extensions/v1beta1
-metadata:
-  name: ingress-web-ui
-  namespace: core
-spec:
-  rules:
-  - host: admin.beta.holmescode.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: ingress-service
-          servicePort: admin
+  type: LoadBalancer
