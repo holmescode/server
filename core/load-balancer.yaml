@@ -59,7 +59,7 @@ metadata:
   namespace: core
 spec:
   selector:
-    k8s-app: ingress-lb
+    app: ingress-lb
   ports:
     - protocol: TCP
       port: 80
@@ -69,5 +69,21 @@ spec:
       name: https
     - protocol: TCP
       port: 8080
+      targetPort: 8080
       name: admin
   type: NodePort
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: ingress-web-ui
+  namespace: core
+spec:
+  rules:
+  - host: beta.holmescode.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ingress-service
+          servicePort: admin
