@@ -2,7 +2,7 @@ kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
   name: ingress-controller
-  namespace: kube-system
+  namespace: core
   labels:
     app: ingress-lb
 spec:
