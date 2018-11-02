@@ -43,14 +43,14 @@ services:
         limits:
           cpus: '1.0'
           memory: 500M
-        update_config:
-          parallelism: 1
-          delay: 10s
-        restart_policy:
-          condition: on-failure
-          delay: 5s
-          max_attempts: 3
-          window: 120s
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
     networks:
       - services
     volumes:
