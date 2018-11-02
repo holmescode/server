@@ -4,17 +4,16 @@ metadata:
   name: ingress-controller
   namespace: core
   labels:
-    app: ingress-lb
+    k8s-app: ingress-lb
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: ingress-lb
+      k8s-app: ingress-lb
   template:
     metadata:
       labels:
-        app: ingress-lb
-        name: ingress-lb
+        k8s-app: ingress-lb
     spec:
       serviceAccountName: ingress-controller
       terminationGracePeriodSeconds: 60
@@ -58,7 +57,7 @@ metadata:
   namespace: core
 spec:
   selector:
-    app: ingress-lb
+    k8s-app: ingress-lb
   ports:
     - name: http
       port: 80
