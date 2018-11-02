@@ -2,7 +2,7 @@ version: '3'
 
 services:
   proxy:
-    image: traefik:1.2
+    image: traefik:1.7
     command: --web --docker --docker.swarmmode --docker.watch --docker.domain=holmescode.com --logLevel=DEBUG
     deploy:
       replicas: 1
