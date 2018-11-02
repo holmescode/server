@@ -80,4 +80,4 @@ spec:
       - path: /
         backend:
           serviceName: ingress-service
-          servicePort: admin
+          servicePort: 8080
