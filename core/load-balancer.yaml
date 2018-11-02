@@ -36,7 +36,7 @@ spec:
         args:
           - --api
           - --kubernetes
-          - --config-file=/config/traefik.toml
+          - --configfile=/config/traefik.toml
         livenessProbe:
           httpGet:
             path: /ping
