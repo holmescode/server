@@ -17,7 +17,7 @@ data:
         [entryPoints.https.tls]
 
     [kubernetes]
-      namespaces = ["core", "holmescode", "viper-cloud"]
+      namespaces = ["core"]
 
     [acme]
     email = "matt@holmescode.com"
