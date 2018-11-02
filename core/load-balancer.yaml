@@ -65,9 +65,19 @@ apiVersion: extensions/v1beta1
 metadata:
   name: ingress-web-ui
   namespace: core
-  annotations:
-    traefik.frontend.rule.type: PathPrefix
 spec:
-  backend:
-    serviceName: ingress-service
-    servicePort: admin
+  rules:
+  - host: beta.holmescode.com
+    http:
+      paths:
+      - path: /
+      backend:
+        serviceName: ingress-service
+        servicePort: http
+  - host: admin.beta.holmescode.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: ingress-service
+          servicePort: admin
