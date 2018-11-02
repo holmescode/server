@@ -71,9 +71,9 @@ spec:
     http:
       paths:
       - path: /
-      backend:
-        serviceName: ingress-service
-        servicePort: http
+        backend:
+          serviceName: ingress-service
+          servicePort: http
   - host: admin.beta.holmescode.com
     http:
       paths:
