@@ -29,11 +29,8 @@ mkdir -p /home/matt/.kube
 cp -i /etc/kubernetes/admin.conf /home/matt/.kube/config
 chown $(id -u matt):$(id -g matt) /home/matt/.kube/config
 
-su - matt
-cd $HOME
-kubectl taint nodes --all node-role.kubernetes.io/master-
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+sudo -u matt kubectl taint nodes --all node-role.kubernetes.io/master-
+sudo -u matt kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
-git clone https://github.com/holmescode/server
-cd server
-git checkout beta
+sudo -u matt git clone https://github.com/holmescode/server
+sudo -u matt -- "cd server; git checkout beta"
