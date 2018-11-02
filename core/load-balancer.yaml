@@ -58,7 +58,7 @@ spec:
       port: 443
     - name: admin
       port: 8080
-  type: NodePort
+  type: LoadBalancer
 ---
 kind: Ingress
 apiVersion: extensions/v1beta1
