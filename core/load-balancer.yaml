@@ -61,16 +61,12 @@ spec:
   selector:
     app: ingress-lb
   ports:
-    - protocol: TCP
+    - name: http
       port: 80
-      name: http
-    - protocol: TCP
+    - name: https
       port: 443
-      name: https
-    - protocol: TCP
+    - name: admin
       port: 8080
-      targetPort: 8080
-      name: admin
   type: NodePort
 ---
 kind: Ingress
