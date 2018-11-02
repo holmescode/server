@@ -35,7 +35,6 @@ spec:
           containerPort: 8080
         args:
           - --api
-          - --kubernetes
           - --configfile=/config/traefik.toml
         livenessProbe:
           httpGet:
